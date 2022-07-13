@@ -7,7 +7,6 @@ const replaceRollupPlugin = require('@rollup/plugin-replace');
 
 const basePath = __dirname;
 
-const patter = /^@salesforce\/apex$/;
 const bundleIgnore =
     '/node_modules/(?!(.*@salesforce/sfdx-lwc-jest/src/lightning-stubs)/)';
 
@@ -355,10 +354,10 @@ const bundleReplacements = {
     ),
 
     // TODO: All of the original ones that are in jest.config.js
-    // '@salesforce/apex': path.resolve(
-    //     basePath,
-    //     './force-app/test/jest-mocks/apex'
-    // ),
+    '@salesforce/apex': path.resolve(
+        basePath,
+        './force-app/test/jest-mocks/apex'
+    ),
     '@salesforce/schema': path.resolve(
         basePath,
         './force-app/test/jest-mocks/schema'
@@ -467,13 +466,6 @@ const bundleReplacements = {
         basePath,
         './node_modules/@salesforce/sfdx-lwc-jest/src/lightning-stubs/buttonIcon/buttonIcon'
     ),
-
-    // Trying RegExp instead of the string
-    patter: path.resolve(
-        basePath,
-        './force-app/test/jest-mocks/lightning/apex'
-    ),
-
     objectGuards: true,
     preventAssignment: true
 };
