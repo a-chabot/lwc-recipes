@@ -1,7 +1,23 @@
 const { jestConfig } = require('@salesforce/sfdx-lwc-jest/config');
 const setupFilesAfterEnv = jestConfig.setupFilesAfterEnv || [];
+const lwc = require('@lwc/rollup-plugin');
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
+
 setupFilesAfterEnv.push('<rootDir>/jest-sa11y-setup.js');
 setupFilesAfterEnv.push('<rootDir>/jest-crypto-setup.js');
+
+const transform = process.env.LWS
+    ? {
+          ...jestConfig.transform,
+          '^.+\\.(js|html|css)$': '<rootDir>/rollup.config.js'
+      }
+    : jestConfig.transform;
+
+const testMatch = [
+    '**/__tests__/**/*.[jt]s?(x)',
+    'force-app/main/default/lwc/**/*.[jt]s?(x)'
+];
+
 module.exports = {
     ...jestConfig,
 
@@ -30,17 +46,11 @@ module.exports = {
     setupFilesAfterEnv,
 
     // Default timeout of a test in milliseconds
-    testTimeout: 10000
+    testTimeout: 10000,
 
-    // TODO: Need to figure out the expression that we want here -- what we want rolled up with jest
-
-    // TODO: Thinking maybe we move anything from this file that we added into rollup.config.js since we added the custom flag
+    // The glob pattern Jest uses to detect test files
+    testMatch,
 
     // A map from regular expressions to paths to transformers.
-    // transform: {
-    //     '\\.js$': ['rollup-jest', { configFile: './rollup.config.js' }]
-    // }
-
-    // options:
-    // sourcemap, configFile, React, useCache, resolveImports, args, plugins
+    transform
 };

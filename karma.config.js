@@ -4,6 +4,7 @@ const path = require('path');
 const lwc = require('@lwc/rollup-plugin');
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const replaceRollupPlugin = require('@rollup/plugin-replace');
+const locker = require('@locker/rollup-plugin');
 
 const basePath = __dirname;
 
@@ -507,7 +508,7 @@ module.exports = function (config) {
             // testPathIgnorePatterns: ['./node_modules/', './test/specs/'],
 
             plugins: [
-                replaceRollupPlugin(bundleReplacements),
+                // replaceRollupPlugin(bundleReplacements),
                 // replaceRollupPlugin({
                 //   include: bundleReplacements,
                 //   exclude: bundleIgnore,
@@ -516,6 +517,7 @@ module.exports = function (config) {
                 nodeResolve({
                     preferBuiltins: true
                 }),
+                // locker(),
                 lwc()
             ],
             output: {
