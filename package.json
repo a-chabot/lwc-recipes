@@ -5,6 +5,7 @@
     "description": "Lightning Web Components Recipes",
     "scripts": {
         "lint": "eslint **/{lwc,aura}/**/*.js",
+        "start": "karma start ./integration-karma/scripts/karma-configs/test/local.js",
         "test": "npm run test:unit",
         "test:unit": "sfdx-lwc-jest --skipApiVersionCheck",
         "test:unit:watch": "sfdx-lwc-jest --watch --skipApiVersionCheck",
@@ -34,21 +35,29 @@
     },
     "devDependencies": {
         "@lwc/eslint-plugin-lwc": "^1.1.1",
+        "@lwc/rollup-plugin": "2.20.4",
         "@prettier/plugin-xml": "^1.2.0",
         "@sa11y/jest": "^3.1.0",
         "@salesforce/eslint-config-lwc": "^3.2.1",
         "@salesforce/eslint-plugin-aura": "^2.0.0",
         "@salesforce/eslint-plugin-lightning": "^1.0.0",
         "@salesforce/sfdx-lwc-jest": "^1.1.0",
+        "es5-proxy-compat": "^0.22.4",
         "eslint": "^7.32.0",
         "eslint-config-prettier": "^8.4.0",
         "eslint-plugin-import": "^2.25.4",
         "eslint-plugin-jest": "^26.1.1",
         "husky": "^7.0.4",
         "jest-canvas-mock": "^2.3.1",
+        "karma": "^6.4.0",
+        "karma-chrome-launcher": "^3.1.0",
+        "karma-jasmine": "^4.0.2",
         "lint-staged": "^12.3.4",
+        "lwc": "2.20.4",
         "prettier": "^2.5.1",
-        "prettier-plugin-apex": "^1.10.0"
+        "prettier-plugin-apex": "^1.10.0",
+        "rollup": "^2.76.0",
+        "rollup-plugin-compat": "^0.22.4"
     },
     "volta": {
         "node": "14.17.3",
